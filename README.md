@@ -18,7 +18,7 @@ file storage entirely. The original file-based version is kept in
 ## 1. Start the database
 
 1. Open XAMPP Control Panel and start **MySQL**.
-2. Confirm it is listening on port **3306** (`D:\Xampp\mysql\bin` = MySQL/MariaDB).
+2. Confirm it is listening on port **3306**.
 
 Credentials used by the app (defaults, edit `database.h`):
 
@@ -30,10 +30,12 @@ MySQL C Client API used below.
 ## 2. Create the database and table
 
 ```bat
-"D:\Xampp\mysql\bin\mysql.exe" -u root < db.sql
+mysql.exe -u root < db.sql
 ```
 
-or paste the contents of `db.sql` into phpMyAdmin's SQL tab.
+(adjust the path to the `mysql.exe` shipped with your XAMPP install, e.g.
+`C:\xampp\mysql\bin\mysql.exe`), or paste the contents of `db.sql` into
+phpMyAdmin's SQL tab.
 
 ## 3. Required MySQL C client library
 
@@ -43,10 +45,10 @@ XAMPP does **not** include the C client headers/DLL. You need
 - **MySQL Connector/C 6.1.11 (winx64)** (compatible):  
   https://cdn.mysql.com/Downloads/Connector-C/mysql-connector-c-6.1.11-winx64.zip
 
-Extract it to this folder so the structure is:
+Extract it to the project folder so the structure is:
 
 ```
-D:\Inventory Management System\mysql-connector-c-6.1.11-winx64\
+<project folder>\mysql-connector-c-6.1.11-winx64\
   include\mysql.h
   lib\libmysql.lib
   lib\libmysql.dll
@@ -75,14 +77,14 @@ MinGW/GCC alternative (if available):
 
 ```bat
 gcc -o inventory.exe inventory.c database.c ^
-  -I mysql-connector-c-6.1.11-winx64\include ^
-  -L mysql-connector-c-6.1.11-winx64\lib -lmysql
+  -I %CD%\mysql-connector-c-6.1.11-winx64\include ^
+  -L %CD%\mysql-connector-c-6.1.11-winx64\lib -lmysql
 ```
 
 ## 5. Running the program
 
 1. Start **XAMPP Control Panel** → Start **MySQL** (should listen on `localhost:3306`).
-2. Create the database/table: run `db.sql` once (e.g. `D:\Xampp\mysql\bin\mysql.exe -u root < db.sql` or phpMyAdmin).
+2. Create the database/table: run `db.sql` once (e.g. `C:\xampp\mysql\bin\mysql.exe -u root < db.sql`, adjusting for your XAMPP path, or via phpMyAdmin).
 3. Ensure `inventory.exe` and `libmysql.dll` are in the same folder.
 4. Run from CMD in this folder:
 
