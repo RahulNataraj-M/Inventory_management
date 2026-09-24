@@ -1,4 +1,4 @@
-# Inventory Management System (C + MySQL/MariaDB via XAMPP)
+# Inventory Management System (C + MySQL via XAMPP)
 
 Console-based inventory app in C. Product data is stored in the
 MySQL/MariaDB server that ships with XAMPP, replacing the old `inventory.txt`
